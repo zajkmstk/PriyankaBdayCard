@@ -38,9 +38,12 @@ private WishRepository wishRepository;
         List<Wish> listOfWishes = new ArrayList<>();
         ObjectMapper objectMapper = new ObjectMapper();
         for(Resource resource : resources){
-            System.out.println(resource);
-            Wish tempWish = objectMapper.readValue(resource.getInputStream(), Wish.class);
-            listOfWishes.add(tempWish);
+            try {
+                Wish tempWish = objectMapper.readValue(resource.getInputStream(), Wish.class);
+                listOfWishes.add(tempWish);
+            } catch (Exception e) {
+                System.out.println("skipping invalid file: " + resource.getFilename());
+            }
         }
         return listOfWishes;
     }
