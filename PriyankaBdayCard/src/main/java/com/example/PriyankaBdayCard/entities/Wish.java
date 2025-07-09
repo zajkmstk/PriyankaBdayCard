@@ -8,8 +8,17 @@ import java.time.LocalDateTime;
 @Entity
 @Table
 public class Wish {
+    @SequenceGenerator(
+            name = "card_seq",
+            sequenceName = "card_sequence",
+            allocationSize = 1 // No gaps
+    )
+    @GeneratedValue(
+            strategy = GenerationType.AUTO,
+            generator = "card_seq"
+
+    )
     @Id // primary key
-    @GeneratedValue
     private int id;
     @Column (nullable = false)
     private String name;
@@ -17,6 +26,10 @@ public class Wish {
     private String message;
     @CreationTimestamp // from hibernate
     private LocalDateTime dateCreated;
+
+    public Wish() {
+        System.out.println("Wish object created");
+    }
 
     public Wish(int id, String name, String message, LocalDateTime dateCreated) {
         this.id = id;
