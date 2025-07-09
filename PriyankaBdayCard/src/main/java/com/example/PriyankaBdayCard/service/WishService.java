@@ -31,13 +31,14 @@ private WishRepository wishRepository;
         return this.wishRepository.findAll();
     }
 
-    PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
-    Resource[] resources = resolver.getResources("classpath:/static/*.json");
 
     public List<Wish> jsonToWishes() throws IOException {
+        PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
+        Resource[] resources = resolver.getResources("classpath:/static/*.json");
         List<Wish> listOfWishes = new ArrayList<>();
         ObjectMapper objectMapper = new ObjectMapper();
         for(Resource resource : resources){
+            System.out.println(resource);
             Wish tempWish = objectMapper.readValue(resource.getInputStream(), Wish.class);
             listOfWishes.add(tempWish);
         }
