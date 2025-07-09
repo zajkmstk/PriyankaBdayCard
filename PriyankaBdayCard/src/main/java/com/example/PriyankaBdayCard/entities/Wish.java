@@ -31,6 +31,11 @@ public class Wish {
         System.out.println("Wish object created");
     }
 
+    public Wish(String name, String message) {
+        this.name = name;
+        this.message = message;
+    }
+
     public Wish(int id, String name, String message, LocalDateTime dateCreated) {
         this.id = id;
         this.name = name;
