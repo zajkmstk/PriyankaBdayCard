@@ -53,7 +53,7 @@ class WishServiceTest {
     @DisplayName("Should convert each JSON wish file into Wish objects and return them as a list")
     void jsonToWishes() throws IOException {
         List<Wish> wishes = wishService.jsonToWishes();
-//        assertEquals(13, wishes.size());
+        assertEquals(13, wishes.size());
         assertNotNull(wishes);
     }
 }
